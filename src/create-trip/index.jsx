@@ -115,23 +115,23 @@ function CreateTrip() {
   }
 
   const renderStepIndicator = () => (
-    <div className="flex justify-center mb-8">
+    <div className="flex justify-center mb-6 sm:mb-8">
       {[1, 2, 3, 4].map((step) => (
         <div key={step} className="flex items-center">
-          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base ${
             step === currentStep 
               ? 'bg-indigo-600 dark:bg-indigo-500 text-white' 
               : step < currentStep 
                 ? 'bg-green-500 dark:bg-green-400 text-white'
                 : 'bg-muted text-muted-foreground'
           }`}>
-            {step === 1 && <FaMapMarkerAlt />}
-            {step === 2 && <FaCalendarAlt />}
-            {step === 3 && <FaWallet />}
-            {step === 4 && <FaUsers />}
+            {step === 1 && <FaMapMarkerAlt className="text-xs sm:text-sm" />}
+            {step === 2 && <FaCalendarAlt className="text-xs sm:text-sm" />}
+            {step === 3 && <FaWallet className="text-xs sm:text-sm" />}
+            {step === 4 && <FaUsers className="text-xs sm:text-sm" />}
           </div>
           {step < 4 && (
-            <div className={`w-20 h-1 ${
+            <div className={`w-10 sm:w-20 h-1 ${
               step < currentStep ? 'bg-green-500 dark:bg-green-400' : 'bg-muted'
             }`} />
           )}
@@ -277,26 +277,26 @@ function CreateTrip() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-950 dark:via-purple-950 dark:to-pink-950">
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-4">
+      <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-3 sm:mb-4">
             Design Your Perfect Journey
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Let our AI craft your dream itinerary in four simple steps
           </p>
         </div>
 
-        <div className="bg-background/80 backdrop-blur-lg rounded-3xl shadow-xl p-8 mb-8 border border-border">
+        <div className="bg-background/80 backdrop-blur-lg rounded-3xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-8 border border-border">
           {renderStepIndicator()}
           {renderStep()}
         </div>
 
-        <div className="flex justify-between mt-8">
+        <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0 mt-6 sm:mt-8">
           <Button
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-8 py-4 rounded-xl ${
+            className={`px-6 sm:px-8 py-3 sm:py-4 rounded-xl ${
               currentStep === 1
                 ? 'bg-muted text-muted-foreground'
                 : 'bg-background text-foreground hover:bg-accent'
@@ -309,10 +309,10 @@ function CreateTrip() {
             <Button
               onClick={OnGenerateTrip}
               disabled={loading}
-              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300"
             >
               {loading ? (
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                   <AiOutlineLoading3Quarters className="h-5 w-5 animate-spin mr-2" />
                   <span>Creating Magic...</span>
                 </div>
@@ -323,7 +323,7 @@ function CreateTrip() {
           ) : (
             <Button
               onClick={nextStep}
-              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300"
             >
               Next
             </Button>
