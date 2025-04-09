@@ -20,22 +20,23 @@ function UserTripCard({trip}) {
   }
 
   return (
-    <Link to={'/view-trip/'+trip?.id}>
-      <div className="bg-card rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 dark:rounded-xl">
+    <Link to={'/view-trip/'+trip?.id} className="block h-full">
+      <div className="bg-card rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 dark:rounded-xl h-full">
         <div className="relative">
           <img 
             src={photoUrl ? photoUrl : '/road-trip-vacation.jpg'} 
-            className="h-48 w-full object-cover rounded-t-xl dark:rounded-t-xl"
+            className="h-36 sm:h-48 w-full object-cover rounded-t-xl dark:rounded-t-xl"
             alt={trip?.userSelection?.location}
+            loading="lazy"
           />
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-            <h2 className="text-xl font-semibold text-white">
+          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/60 to-transparent">
+            <h2 className="text-lg sm:text-xl font-semibold text-white line-clamp-1">
               {trip?.userSelection?.location}
             </h2>
           </div>
         </div>
-        <div className="p-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="p-3 sm:p-4">
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
             <span>🗓️ {trip?.userSelection?.totalDays} Days</span>
             <span>•</span>
             <span>💰 {trip?.userSelection?.budget}</span>
