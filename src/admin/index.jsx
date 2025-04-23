@@ -78,9 +78,9 @@ function AdminPanel() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="bg-card p-8 rounded-xl shadow-lg border border-border max-w-md w-full">
-          <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 w-full overflow-x-hidden">
+        <div className="bg-card p-6 sm:p-8 rounded-xl shadow-lg border border-border w-full max-w-md">
+          <h2 className="text-xl sm:text-2xl font-bold text-center mb-6">Admin Login</h2>
           <div className="space-y-4">
             <Input
               type="text"
@@ -110,13 +110,13 @@ function AdminPanel() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
-          <div className="flex items-center gap-4">
-            <div className="bg-card px-4 py-2 rounded-lg">
-              <span className="text-muted-foreground">Total Users: </span>
+    <div className="min-h-screen bg-background w-full overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Admin Dashboard</h1>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <div className="bg-card px-3 sm:px-4 py-2 rounded-lg">
+              <span className="text-sm sm:text-base text-muted-foreground">Total Users: </span>
               <span className="font-bold text-foreground">{Object.keys(users).length}</span>
             </div>
             <Button
@@ -125,13 +125,14 @@ function AdminPanel() {
                 sessionStorage.removeItem('adminAuth');
                 setIsAuthenticated(false);
               }}
+              className="text-sm sm:text-base"
             >
               Logout
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6">
           {Object.entries(users).map(([email, userData]) => (
             <UserCard key={email} email={email} userData={userData} />
           ))}

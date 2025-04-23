@@ -37,44 +37,44 @@ function WeatherInfo({ location }) {
   }
 
   return (
-    <div className="bg-card rounded-lg p-6 border border-border">
-      <div className="flex items-center justify-between">
+    <div className="bg-card rounded-lg p-4 sm:p-6 border border-border">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">Current Weather</h3>
-          <p className="text-muted-foreground">{weather.location.name}</p>
+          <h3 className="text-base sm:text-lg font-semibold text-foreground">Current Weather</h3>
+          <p className="text-sm text-muted-foreground">{weather.location.name}</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <img 
             src={weather.current.condition.icon} 
             alt={weather.current.condition.text}
-            className="w-16 h-16"
+            className="w-12 h-12 sm:w-16 sm:h-16"
           />
           <div className="text-right">
-            <p className="text-3xl font-bold text-foreground">
+            <p className="text-2xl sm:text-3xl font-bold text-foreground">
               {weather.current.temp_c}°C
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               {weather.current.condition.text}
             </p>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-border">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4 pt-4 border-t border-border">
         <div>
-          <p className="text-sm text-muted-foreground">Humidity</p>
-          <p className="text-lg font-medium text-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">Humidity</p>
+          <p className="text-base sm:text-lg font-medium text-foreground">
             {weather.current.humidity}%
           </p>
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Wind</p>
-          <p className="text-lg font-medium text-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">Wind</p>
+          <p className="text-base sm:text-lg font-medium text-foreground">
             {weather.current.wind_kph} km/h
           </p>
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Feels Like</p>
-          <p className="text-lg font-medium text-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">Feels Like</p>
+          <p className="text-base sm:text-lg font-medium text-foreground">
             {weather.current.feelslike_c}°C
           </p>
         </div>

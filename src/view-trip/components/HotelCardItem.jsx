@@ -55,17 +55,17 @@ function HotelCardItem({item}) {
         <div className="relative">
           <img 
             src={photoUrl ? photoUrl : '/road-trip-vacation.jpg'} 
-            className="h-48 w-full object-cover rounded-t-xl dark:rounded-t-xl"
+            className="h-36 sm:h-48 w-full object-cover rounded-t-xl dark:rounded-t-xl"
             alt={item?.hotelName}
           />
-          <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium">
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-background/90 backdrop-blur-sm rounded-full px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium">
             ⭐ {item?.rating}
           </div>
         </div>
-        <div className="p-4 space-y-2">
-          <h3 className="font-semibold text-lg line-clamp-1 text-foreground">{item?.hotelName}</h3>
-          <p className="text-sm text-muted-foreground line-clamp-2">📍 {item?.hotelAddress}</p>
-          <p className="text-blue-600 dark:text-blue-400 font-medium">💰 {item?.price}</p>
+        <div className="p-3 sm:p-4 space-y-1 sm:space-y-2">
+          <h3 className="font-semibold text-base sm:text-lg line-clamp-1 text-foreground">{item?.hotelName}</h3>
+          <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">📍 {item?.hotelAddress}</p>
+          <p className="text-blue-600 dark:text-blue-400 font-medium text-sm sm:text-base">💰 {item?.price}</p>
         </div>
       </div>
     </Link>

@@ -28,19 +28,19 @@ function ViewTrip() {
   }, [tripId])
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-12">
+    <div className="min-h-screen bg-background w-full overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="space-y-6 sm:space-y-12">
           <InfoSection trip={trip}/>
           {trip?.userSelection?.location && (
-            <div className="bg-card rounded-2xl shadow-sm p-8 border border-border">
+            <div className="bg-card rounded-xl sm:rounded-2xl shadow-sm p-4 sm:p-8 border border-border">
               <WeatherInfo location={trip.userSelection.location} />
             </div>
           )}
-          <div className="bg-card rounded-2xl shadow-sm p-8 border border-border">
+          <div className="bg-card rounded-xl sm:rounded-2xl shadow-sm p-4 sm:p-8 border border-border">
             <Hotels trip={trip}/>
           </div>
-          <div className="bg-card rounded-2xl shadow-sm p-8 border border-border">
+          <div className="bg-card rounded-xl sm:rounded-2xl shadow-sm p-4 sm:p-8 border border-border">
             <TripPlace trip={trip}/>
           </div>
           <Footer trip={trip}/>
