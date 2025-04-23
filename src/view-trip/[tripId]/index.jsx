@@ -7,6 +7,7 @@ import InfoSection from '../components/InfoSection';
 import Hotels from '../components/Hotels';
 import TripPlace from '../components/TripPlace';
 import Footer from '../components/Footer';
+import WeatherInfo from '../components/WeatherInfo';
 
 function ViewTrip() {
   const {tripId} = useParams();
@@ -31,6 +32,11 @@ function ViewTrip() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-12">
           <InfoSection trip={trip}/>
+          {trip?.userSelection?.location && (
+            <div className="bg-card rounded-2xl shadow-sm p-8 border border-border">
+              <WeatherInfo location={trip.userSelection.location} />
+            </div>
+          )}
           <div className="bg-card rounded-2xl shadow-sm p-8 border border-border">
             <Hotels trip={trip}/>
           </div>

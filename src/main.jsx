@@ -10,6 +10,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import ViewTrip from './view-trip/[tripId]/index.jsx'
 import MyTrips from './my-trips/index.jsx'
 import { ThemeProvider } from 'next-themes'
+import AdminPanel from './admin/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,15 @@ const router = createBrowserRouter([
       <>
         <Header />
         <MyTrips />
+      </>
+    ),
+  },
+  {
+    path: '/admin',
+    element: (
+      <>
+        <Header />
+        <AdminPanel />
       </>
     ),
   },

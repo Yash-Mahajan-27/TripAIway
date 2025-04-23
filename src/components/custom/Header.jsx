@@ -14,14 +14,13 @@ import {
 } from "@/components/ui/dialog"
 import { FcGoogle } from "react-icons/fc";
 import { useTheme } from 'next-themes';
-import { Menu, Moon, Sun, X } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [openDialog, setOpenDialog] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const navigate = useNavigate();
@@ -55,6 +54,7 @@ function Header() {
   const handleLogout = () => {
     googleLogout();
     localStorage.clear();
+    sessionStorage.removeItem('adminAuth');
     navigate('/');
   };
 
@@ -83,73 +83,36 @@ function Header() {
                 <Moon className="h-5 w-5 transition-all" />
               )}
             </Button>
-            
             {user ? (
-              <>
-                {/* Desktop navigation */}
-                <div className='hidden md:flex items-center gap-4'>
-                  <a href="/create-trip">
-                    <Button variant="outline" className="rounded-full px-6 hover:bg-primary/10">
-                      Create Trip
-                    </Button>
-                  </a>
-                  <a href="/my-trips">
-                    <Button variant="outline" className="rounded-full px-6 hover:bg-primary/10">
-                      My Trips
-                    </Button>
-                  </a>
-                  <Popover>
-                    <PopoverTrigger>
-                      <img 
-                        src={user?.picture} 
-                        className='w-10 h-10 rounded-full border-2 border-background shadow-md hover:shadow-lg transition-shadow'
-                        alt="Profile" 
-                      />
-                    </PopoverTrigger>
-                    <PopoverContent className="w-48">
-                      <div 
-                        className="cursor-pointer p-2 hover:bg-muted rounded-md transition-colors"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                
-                {/* Mobile menu button */}
-                <div className='md:hidden flex items-center'>
-                  <Popover>
-                    <PopoverTrigger>
-                      <img 
-                        src={user?.picture} 
-                        className='w-10 h-10 rounded-full border-2 border-background shadow-md hover:shadow-lg transition-shadow mr-2'
-                        alt="Profile" 
-                      />
-                    </PopoverTrigger>
-                    <PopoverContent className="w-48">
-                      <div 
-                        className="cursor-pointer p-2 hover:bg-muted rounded-md transition-colors"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="rounded-full ml-1"
-                  >
-                    {mobileMenuOpen ? (
-                      <X className="h-6 w-6 transition-all" />
-                    ) : (
-                      <Menu className="h-6 w-6 transition-all" />
-                    )}
+              <div className='flex items-center gap-4'>
+                <a href="/create-trip">
+                  <Button variant="outline" className="rounded-full px-6 hover:bg-primary/10">
+                    Create Trip
                   </Button>
-                </div>
-              </>
+                </a>
+                <a href="/my-trips">
+                  <Button variant="outline" className="rounded-full px-6 hover:bg-primary/10">
+                    My Trips
+                  </Button>
+                </a>
+                <Popover>
+                  <PopoverTrigger>
+                    <img 
+                      src={user?.picture} 
+                      className='w-10 h-10 rounded-full border-2 border-background shadow-md hover:shadow-lg transition-shadow'
+                      alt="Profile" 
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent className="w-48">
+                    <div 
+                      className="cursor-pointer p-2 hover:bg-muted rounded-md transition-colors"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </div>
             ) : (
               <Button 
                 onClick={() => setOpenDialog(true)}
@@ -160,24 +123,6 @@ function Header() {
             )}
           </div>
         </div>
-        
-        {/* Mobile menu */}
-        {user && mobileMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-md py-4 px-2 rounded-lg mb-4 border border-border animate-in fade-in slide-in-from-top-5 duration-200">
-            <div className="flex flex-col space-y-3">
-              <a href="/create-trip" className="w-full" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="rounded-full w-full justify-start px-6 hover:bg-primary/10">
-                  Create Trip
-                </Button>
-              </a>
-              <a href="/my-trips" className="w-full" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="rounded-full w-full justify-start px-6 hover:bg-primary/10">
-                  My Trips
-                </Button>
-              </a>
-            </div>
-          </div>
-        )}
       </div>
       
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
