@@ -61,16 +61,16 @@ function Header() {
   if (!mounted) return null;
 
   return (
-    <div className='sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between items-center h-20'>
+    <div className='sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b w-full'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full'>
+        <div className='flex justify-between items-center h-16 sm:h-20'>
           <img 
             src='/logo.png' 
-            className='h-32 w-auto cursor-pointer' 
+            className='h-24 sm:h-32 w-auto cursor-pointer' 
             onClick={() => navigate('/')}
             alt="Logo"
           />
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-2 sm:gap-4'>
             <Button
               variant="ghost"
               size="icon"
@@ -84,14 +84,14 @@ function Header() {
               )}
             </Button>
             {user ? (
-              <div className='flex items-center gap-4'>
-                <a href="/create-trip">
-                  <Button variant="outline" className="rounded-full px-6 hover:bg-primary/10">
+              <div className='flex items-center gap-2 sm:gap-4'>
+                <a href="/create-trip" className="hidden sm:block">
+                  <Button variant="outline" className="rounded-full px-4 sm:px-6 hover:bg-primary/10 text-sm sm:text-base">
                     Create Trip
                   </Button>
                 </a>
-                <a href="/my-trips">
-                  <Button variant="outline" className="rounded-full px-6 hover:bg-primary/10">
+                <a href="/my-trips" className="hidden sm:block">
+                  <Button variant="outline" className="rounded-full px-4 sm:px-6 hover:bg-primary/10 text-sm sm:text-base">
                     My Trips
                   </Button>
                 </a>
@@ -99,7 +99,7 @@ function Header() {
                   <PopoverTrigger>
                     <img 
                       src={user?.picture} 
-                      className='w-10 h-10 rounded-full border-2 border-background shadow-md hover:shadow-lg transition-shadow'
+                      className='w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-background shadow-md hover:shadow-lg transition-shadow'
                       alt="Profile" 
                     />
                   </PopoverTrigger>
@@ -110,13 +110,23 @@ function Header() {
                     >
                       Logout
                     </div>
+                    <a href="/create-trip" className="block sm:hidden">
+                      <div className="cursor-pointer p-2 hover:bg-muted rounded-md transition-colors">
+                        Create Trip
+                      </div>
+                    </a>
+                    <a href="/my-trips" className="block sm:hidden">
+                      <div className="cursor-pointer p-2 hover:bg-muted rounded-md transition-colors">
+                        My Trips
+                      </div>
+                    </a>
                   </PopoverContent>
                 </Popover>
               </div>
             ) : (
               <Button 
                 onClick={() => setOpenDialog(true)}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white rounded-full px-6 hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white rounded-full px-4 sm:px-6 text-sm sm:text-base hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200"
               >
                 Sign In
               </Button>
