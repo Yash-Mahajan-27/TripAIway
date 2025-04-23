@@ -82,14 +82,14 @@ function Hero() {
   return (
     <div 
       ref={containerRef}
-      className="min-h-[85vh] bg-gradient-to-b from-blue-50 to-background dark:from-blue-950 dark:to-background flex items-center opacity-0"
+      className="min-h-[80vh] w-full bg-gradient-to-b from-blue-50 to-background dark:from-blue-950 dark:to-background flex items-center opacity-0 overflow-x-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             <h1 
               ref={headingRef}
-              className="text-4xl md:text-6xl font-bold leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
                 Discover Your Next Adventure
@@ -99,24 +99,24 @@ function Hero() {
             </h1>
             <p 
               ref={descriptionRef}
-              className="text-xl text-muted-foreground leading-relaxed"
+              className="text-lg sm:text-xl text-muted-foreground leading-relaxed"
             >
               Your personal AI travel curator crafting perfect itineraries tailored to your dreams and budget.
             </p>
-            <div ref={buttonRef}>
+            <div ref={buttonRef} className="flex justify-center lg:justify-start">
               <Link to="/create-trip">
-                <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-8 py-6 text-lg rounded-full hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200">
+                <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg rounded-full hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200">
                   Start Planning Your Journey
                 </Button>
               </Link>
             </div>
           </div>
-          <div className="relative" ref={imageRef}>
+          <div className="relative mt-8 lg:mt-0" ref={imageRef}>
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/50 dark:to-indigo-900/50 rounded-2xl blur-2xl opacity-50"></div>
             <img 
               src="/landing.png" 
               alt="Travel Planning 3D Illustration"
-              className="relative rounded-2xl transform transition duration-500 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] hover:drop-shadow-[0_45px_45px_rgba(0,0,0,0.3)]"
+              className="relative rounded-2xl w-full max-w-lg mx-auto transform transition duration-500 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] hover:drop-shadow-[0_45px_45px_rgba(0,0,0,0.3)]"
             />
           </div>
         </div>
