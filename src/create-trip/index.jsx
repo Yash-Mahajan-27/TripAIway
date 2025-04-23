@@ -124,23 +124,25 @@ function CreateTrip() {
   }
 
   const renderStepIndicator = () => (
-    <div className="flex justify-center mb-8">
+    <div className="flex justify-center mb-6 sm:mb-8">
       {[1, 2, 3, 4].map((step) => (
         <div key={step} className="flex items-center">
-          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${
             step === currentStep 
               ? 'bg-indigo-600 dark:bg-indigo-500 text-white' 
               : step < currentStep 
                 ? 'bg-green-500 dark:bg-green-400 text-white'
                 : 'bg-muted text-muted-foreground'
           }`}>
-            {step === 1 && <FaMapMarkerAlt />}
-            {step === 2 && <FaCalendarAlt />}
-            {step === 3 && <FaWallet />}
-            {step === 4 && <FaUsers />}
+            <span className="text-xs sm:text-base">
+              {step === 1 && <FaMapMarkerAlt />}
+              {step === 2 && <FaCalendarAlt />}
+              {step === 3 && <FaWallet />}
+              {step === 4 && <FaUsers />}
+            </span>
           </div>
           {step < 4 && (
-            <div className={`w-20 h-1 ${
+            <div className={`w-10 sm:w-20 h-1 ${
               step < currentStep ? 'bg-green-500 dark:bg-green-400' : 'bg-muted'
             }`} />
           )}
@@ -153,12 +155,12 @@ function CreateTrip() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-6 transform transition-all duration-500">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Choose Your Destination</h2>
-              <p className="text-muted-foreground">Where would you like your adventure to begin?</p>
+          <div className="space-y-4 sm:space-y-6 transform transition-all duration-500">
+            <div className="text-center mb-4 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Choose Your Destination</h2>
+              <p className="text-sm sm:text-base text-muted-foreground">Where would you like your adventure to begin?</p>
             </div>
-            <div className="bg-card p-6 rounded-2xl shadow-lg border-2 border-indigo-100 dark:border-indigo-900">
+            <div className="bg-card p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border-2 border-indigo-100 dark:border-indigo-900">
               <GooglePlacesAutocomplete
                 apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
                 selectProps={{
@@ -203,51 +205,51 @@ function CreateTrip() {
         )
       case 2:
         return (
-          <div className="space-y-6 transform transition-all duration-500">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Plan Your Duration</h2>
-              <p className="text-muted-foreground">How many days would you like to explore?</p>
+          <div className="space-y-4 sm:space-y-6 transform transition-all duration-500">
+            <div className="text-center mb-4 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Plan Your Duration</h2>
+              <p className="text-sm sm:text-base text-muted-foreground">How many days would you like to explore?</p>
             </div>
-            <div className="bg-card p-8 rounded-2xl shadow-lg border-2 border-indigo-100 dark:border-indigo-900">
+            <div className="bg-card p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg border-2 border-indigo-100 dark:border-indigo-900">
               <Input
                 placeholder="Number of days"
                 type="number"
                 min="1"
-                className="text-lg py-8 text-center text-2xl"
+                className="text-base sm:text-lg py-4 sm:py-8 text-center sm:text-2xl"
                 onChange={(v) => handleInputChange('totalDays', v.target.value)}
               />
               {formData.totalDays && !isValidDays() && (
-                <p className="text-red-500 mt-2 text-center">Please enter a number greater than 0</p>
+                <p className="text-red-500 mt-2 text-center text-sm sm:text-base">Please enter a number greater than 0</p>
               )}
             </div>
           </div>
         )
       case 3:
         return (
-          <div className="space-y-6 transform transition-all duration-500">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Set Your Budget</h2>
-              <p className="text-muted-foreground">Choose your preferred spending level</p>
+          <div className="space-y-4 sm:space-y-6 transform transition-all duration-500">
+            <div className="text-center mb-4 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Set Your Budget</h2>
+              <p className="text-sm sm:text-base text-muted-foreground">Choose your preferred spending level</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               {SelectBudgetOptions.map((item, index) => (
                 <div
                   key={index}
                   onClick={() => handleInputChange('budget', item.title)}
-                  className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 hover:transform hover:scale-105 flex justify-between items-center
+                  className={`cursor-pointer p-4 sm:p-8 rounded-xl sm:rounded-2xl transition-all duration-300 hover:transform hover:scale-105 flex justify-between items-center
                     ${formData?.budget === item.title
                       ? 'bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-500 text-white shadow-xl'
                       : 'bg-card border-2 border-indigo-100 dark:border-indigo-900 hover:border-indigo-300 dark:hover:border-indigo-700'}`}
                 >
                   <div className="flex-grow">
-                    <h3 className={`text-xl font-bold mb-2 ${formData?.budget === item.title ? 'text-white' : 'text-foreground'}`}>
+                    <h3 className={`text-base sm:text-xl font-bold mb-1 sm:mb-2 ${formData?.budget === item.title ? 'text-white' : 'text-foreground'}`}>
                       {item.title}
                     </h3>
-                    <p className={formData?.budget === item.title ? 'text-indigo-100' : 'text-muted-foreground'}>
+                    <p className={`text-xs sm:text-sm ${formData?.budget === item.title ? 'text-indigo-100' : 'text-muted-foreground'}`}>
                       {item.desc}
                     </p>
                   </div>
-                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <div className="text-3xl sm:text-5xl mb-0 sm:mb-4">{item.icon}</div>
                 </div>
               ))}
             </div>
@@ -255,33 +257,33 @@ function CreateTrip() {
         )
       case 4:
         return (
-          <div className="space-y-6 transform transition-all duration-500">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Choose Your Travel Group</h2>
-              <p className="text-muted-foreground">Who will be joining you on this adventure?</p>
+          <div className="space-y-4 sm:space-y-6 transform transition-all duration-500">
+            <div className="text-center mb-4 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">Choose Your Travel Group</h2>
+              <p className="text-sm sm:text-base text-muted-foreground">Who will be joining you on this adventure?</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {SelectTravelList.map((item, index) => (
                 <div
                   key={index}
                   onClick={() => handleInputChange('traveler', item.people)}
-                  className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 hover:transform hover:scale-105 flex
+                  className={`cursor-pointer p-4 sm:p-8 rounded-xl sm:rounded-2xl transition-all duration-300 hover:transform hover:scale-105 flex
                     ${formData?.traveler === item.people 
                       ? 'bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-500 text-white shadow-xl' 
                       : 'bg-card border-2 border-indigo-100 dark:border-indigo-900 hover:border-indigo-300 dark:hover:border-indigo-700'}`}
                 >
                   <div className="flex-grow">
-                    <h3 className={`text-xl font-bold mb-2 ${formData?.traveler === item.people ? 'text-white' : 'text-foreground'}`}>
+                    <h3 className={`text-base sm:text-xl font-bold mb-1 sm:mb-2 ${formData?.traveler === item.people ? 'text-white' : 'text-foreground'}`}>
                       {item.title}
                     </h3>
-                    <p className={formData?.traveler === item.people ? 'text-indigo-100' : 'text-muted-foreground'}>
+                    <p className={`text-xs sm:text-sm ${formData?.traveler === item.people ? 'text-indigo-100' : 'text-muted-foreground'}`}>
                       {item.desc}
                     </p>
-                    <p className={`mt-2 font-medium ${formData?.traveler === item.people ? 'text-indigo-100' : 'text-indigo-600 dark:text-indigo-400'}`}>
+                    <p className={`mt-1 sm:mt-2 text-xs sm:text-sm font-medium ${formData?.traveler === item.people ? 'text-indigo-100' : 'text-indigo-600 dark:text-indigo-400'}`}>
                       {item.people}
                     </p>
                   </div>
-                  <div className="text-5xl">{item.icon}</div>
+                  <div className="text-3xl sm:text-5xl">{item.icon}</div>
                 </div>
               ))}
             </div>
@@ -291,27 +293,27 @@ function CreateTrip() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-blue-950 dark:via-background dark:to-background">
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-400 dark:to-indigo-400 text-transparent bg-clip-text mb-4">
+    <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-blue-950 dark:via-background dark:to-background">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:py-12">
+        <div className="text-center mb-6 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-400 dark:to-indigo-400 text-transparent bg-clip-text mb-2 sm:mb-4">
             Design Your Perfect Journey
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Let our AI craft your dream itinerary in four simple steps
           </p>
         </div>
 
-        <div className="bg-background/80 backdrop-blur-lg rounded-3xl shadow-xl p-8 mb-8 border border-border">
+        <div className="bg-background/80 backdrop-blur-lg rounded-xl sm:rounded-3xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-8 border border-border">
           {renderStepIndicator()}
           {renderStep()}
         </div>
 
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between mt-4 sm:mt-8">
           <Button
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-8 py-4 rounded-xl ${
+            className={`px-4 sm:px-8 py-2 sm:py-4 rounded-lg sm:rounded-xl text-sm sm:text-base ${
               currentStep === 1
                 ? 'bg-muted text-muted-foreground'
                 : 'bg-background text-foreground hover:bg-accent'
@@ -324,11 +326,11 @@ function CreateTrip() {
             <Button
               onClick={OnGenerateTrip}
               disabled={loading}
-              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300"
+              className="px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-lg sm:rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300 text-sm sm:text-base"
             >
               {loading ? (
                 <div className="flex items-center">
-                  <AiOutlineLoading3Quarters className="h-5 w-5 animate-spin mr-2" />
+                  <AiOutlineLoading3Quarters className="h-4 w-4 sm:h-5 sm:w-5 animate-spin mr-2" />
                   <span>Creating Magic...</span>
                 </div>
               ) : (
@@ -339,7 +341,7 @@ function CreateTrip() {
             <Button
               onClick={nextStep}
               disabled={currentStep === 2 && (!formData.totalDays || !isValidDays())}
-              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300"
+              className="px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-lg sm:rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 transition-all duration-300 text-sm sm:text-base"
             >
               Next
             </Button>
@@ -348,20 +350,20 @@ function CreateTrip() {
       </div>
 
       <Dialog open={openDialog}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="max-w-[90%] sm:max-w-md mx-auto rounded-lg">
           <DialogHeader>
             <DialogDescription>
-              <div className="flex flex-col items-center space-y-6 py-6">
-                <img src="/logo.png" className="h-32 w-auto"/>
+              <div className="flex flex-col items-center space-y-4 sm:space-y-6 py-4 sm:py-6">
+                <img src="/logo.png" className="h-24 sm:h-32 w-auto"/>
                 <div className="text-center">
-                  <h2 className="text-2xl font-bold text-foreground">Welcome Back</h2>
-                  <p className="mt-2 text-muted-foreground">Sign in securely with Google to continue your journey</p>
+                  <h2 className="text-xl sm:text-2xl font-bold text-foreground">Welcome Back</h2>
+                  <p className="mt-2 text-sm sm:text-base text-muted-foreground">Sign in securely with Google to continue your journey</p>
                 </div>
                 <Button 
                   onClick={login} 
-                  className="w-full flex items-center justify-center gap-3 bg-background border-2 border-input text-foreground hover:bg-accent transition-colors py-6"
+                  className="w-full flex items-center justify-center gap-3 bg-background border-2 border-input text-foreground hover:bg-accent transition-colors py-4 sm:py-6 text-sm sm:text-base"
                 >
-                  <FcGoogle className="h-6 w-6"/>zz
+                  <FcGoogle className="h-5 w-5 sm:h-6 sm:w-6"/>
                   <span className="font-medium">Continue with Google</span>
                 </Button>
               </div>
